@@ -18,7 +18,7 @@ is stored using the `read.csv()` function.  Variable descriptions were obtained 
 All feature engineering should be done in one the first code chunks of your document.
 
 ```{r, label = "READIN"}
-housedata <- read.csv("../input/housedata.csv", 
+housedata <- read.csv("housedata.csv", 
                       colClasses = c(id = "character", date = "character", 
                                      yr_built = "character", zipcode = "factor", grade = "factor"))
 housedata$date <- as.Date(housedata$date, "%Y%m%d")
@@ -29,7 +29,7 @@ housedata$yr_built <- as.Date(ISOdate(housedata$yr_built, 9, 1))  # Complete Yea
 housedata$yr_renovated <- as.Date(ISOdate(housedata$yr_renovated, 9, 1))  # Last renovated Year, Sept 1
 housedata <- housedata[, -1]
 #### Perform same steps with test set
-housedataT <- read.csv("../input/housedataTEST.csv", 
+housedataT <- read.csv("housedataTEST.csv", 
                       colClasses = c(id = "character", date = "character", 
                                      yr_built = "character", zipcode = "factor", grade = "factor"))
 housedataT$date <- as.Date(housedataT$date, "%Y%m%d")
