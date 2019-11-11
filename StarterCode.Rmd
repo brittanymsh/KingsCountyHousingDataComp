@@ -128,4 +128,11 @@ head(formatSubmission)
 write.csv(formatSubmission, "Example.csv", row.names  = FALSE)
 ```
 
-Download the `Example.csv` file and upload it to kaggle to be evaluated.
+## Predicting Price with Different Models?
+
+```{r}
+modA <- lm(price ~ bedrooms + bathrooms + sqft_living, housedata)
+
+summary(modA)
+```
+
