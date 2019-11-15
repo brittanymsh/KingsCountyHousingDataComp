@@ -128,11 +128,8 @@ head(formatSubmission)
 write.csv(formatSubmission, "Example.csv", row.names  = FALSE)
 ```
 
-## Predicting Price with Different Models?
-
 ```{r}
-modA <- lm(price ~ bedrooms + bathrooms + sqft_living, housedata)
-
-summary(modA)
+mod2 <- stepAIC(lm(price ~ . -view -zipcode - grade, data = housedata))
+summary(mod2)
 ```
 

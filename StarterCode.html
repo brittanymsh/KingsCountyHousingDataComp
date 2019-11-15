@@ -12,7 +12,7 @@
 
 <meta name="author" content="Alan Arnholt" />
 
-<meta name="date" content="2019-11-11" />
+<meta name="date" content="2019-11-15" />
 
 <title>Starter Code</title>
 
@@ -188,7 +188,7 @@ summary {
 
 <h1 class="title toc-ignore">Starter Code</h1>
 <h4 class="author">Alan Arnholt</h4>
-<h4 class="date">November 11, 2019</h4>
+<h4 class="date">November 15, 2019</h4>
 
 </div>
 
@@ -431,7 +431,75 @@ head(formatSubmission)</code></pre>
 5  5 436416.6
 6  6 536388.7</code></pre>
 <pre class="r"><code>write.csv(formatSubmission, &quot;Example.csv&quot;, row.names  = FALSE)</code></pre>
-<p>Download the <code>Example.csv</code> file and upload it to kaggle to be evaluated.</p>
+<pre class="r"><code>mod2 &lt;- stepAIC(lm(price ~ . -view -zipcode - grade, data = housedata))</code></pre>
+<pre><code>Start:  AIC=427023.3
+price ~ (date + bedrooms + bathrooms + sqft_living + sqft_lot + 
+    floors + waterfront + view + condition + grade + sqft_above + 
+    sqft_basement + yr_built + yr_renovated + zipcode + lat + 
+    long + sqft_living15 + sqft_lot15) - view - zipcode - grade
+
+
+Step:  AIC=427023.3
+price ~ date + bedrooms + bathrooms + sqft_living + sqft_lot + 
+    floors + waterfront + condition + sqft_above + yr_built + 
+    yr_renovated + lat + long + sqft_living15 + sqft_lot15
+
+                Df  Sum of Sq        RSS    AIC
+&lt;none&gt;                        8.0775e+14 427023
+- floors         1 5.5687e+11 8.0831e+14 427033
+- sqft_lot       1 7.1102e+11 8.0846e+14 427037
+- sqft_lot15     1 1.2667e+12 8.0902e+14 427049
+- yr_renovated   1 2.0818e+12 8.0983e+14 427066
+- date           1 2.9123e+12 8.1067e+14 427084
+- sqft_above     1 3.5157e+12 8.1127e+14 427097
+- condition      4 7.5945e+12 8.1535e+14 427178
+- bathrooms      1 9.8161e+12 8.1757e+14 427231
+- long           1 1.3154e+13 8.2091e+14 427302
+- yr_built       1 1.8661e+13 8.2641e+14 427418
+- sqft_living15  1 2.3877e+13 8.3163e+14 427528
+- bedrooms       1 2.6310e+13 8.3406e+14 427579
+- waterfront     1 7.3923e+13 8.8168e+14 428544
+- sqft_living    1 7.7998e+13 8.8575e+14 428624
+- lat            1 1.1927e+14 9.2703e+14 429416</code></pre>
+<pre class="r"><code>summary(mod2)</code></pre>
+<pre><code>
+Call:
+lm(formula = price ~ date + bedrooms + bathrooms + sqft_living + 
+    sqft_lot + floors + waterfront + condition + sqft_above + 
+    yr_built + yr_renovated + lat + long + sqft_living15 + sqft_lot15, 
+    data = housedata)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-1399050  -110192   -11149    84946  4145742 
+
+Coefficients:
+                     Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)        -6.058e+07  1.799e+06 -33.674  &lt; 2e-16 ***
+date                1.151e+02  1.454e+01   7.912 2.67e-15 ***
+bedrooms           -5.530e+04  2.325e+03 -23.783  &lt; 2e-16 ***
+bathrooms           5.664e+04  3.899e+03  14.527  &lt; 2e-16 ***
+sqft_living         2.074e+02  5.065e+00  40.949  &lt; 2e-16 ***
+sqft_lot            2.265e-01  5.793e-02   3.910 9.28e-05 ***
+floors              1.481e+04  4.282e+03   3.460 0.000541 ***
+waterfrontYes       7.603e+05  1.907e+04  39.865  &lt; 2e-16 ***
+conditionfair       1.021e+05  4.785e+04   2.133 0.032939 *  
+conditionaverage    1.093e+05  4.422e+04   2.472 0.013440 *  
+conditiongood       1.453e+05  4.422e+04   3.286 0.001017 ** 
+conditionvery good  1.822e+05  4.450e+04   4.094 4.27e-05 ***
+sqft_above          4.426e+01  5.091e+00   8.694  &lt; 2e-16 ***
+yr_built           -7.721e+00  3.855e-01 -20.030  &lt; 2e-16 ***
+yr_renovated        2.697e+00  4.032e-01   6.690 2.30e-11 ***
+lat                 6.264e+05  1.237e+04  50.637  &lt; 2e-16 ***
+long               -2.347e+05  1.396e+04 -16.816  &lt; 2e-16 ***
+sqft_living15       8.733e+01  3.855e+00  22.656  &lt; 2e-16 ***
+sqft_lot15         -4.654e-01  8.919e-02  -5.218 1.83e-07 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 215700 on 17365 degrees of freedom
+Multiple R-squared:   0.66, Adjusted R-squared:  0.6597 
+F-statistic:  1873 on 18 and 17365 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 
 
