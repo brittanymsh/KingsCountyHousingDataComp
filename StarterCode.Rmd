@@ -1,6 +1,6 @@
 ---
 title: "Starter Code"
-author: "Alan Arnholt"
+author: "Brittany Hall"
 date: '`r format(Sys.time(), "%B %d, %Y")`'
 output: html_document
 ---
@@ -114,7 +114,9 @@ p6
 
 ```{r}
 library(MASS)
-mod1 <- stepAIC(lm(price ~ . - sqft_basement - grade, data = housedata))
+mod <- stepAIC(lm(price ~ . - sqft_basement - grade, data = housedata))
+mod1 <- stepAIC(lm(price ~ .  - grade - floors - waterfront, data = housedata))
+summary(mod)
 summary(mod1)
 ```
 
